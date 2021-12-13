@@ -5,6 +5,8 @@
 
 @section('content')
 
-    Página principal
+    @foreach($events as $event)
+        <p> {{ $event->title }} --- {{ $event->description }} </p>
+    @endforeach
 
 @endsection
