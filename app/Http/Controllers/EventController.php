@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
     public function index(){
 
         $events = Event::all();
@@ -22,17 +23,44 @@ class EventController extends Controller
 
     }
 
-    public function store(Request $request){
-        
-        $events = new Event;
+    public function store(Request $request) {
 
-        $events->title = $request->title;
-        $events->city = $request->city;
-        $events->private = $request->private;
-        $events->description = $request->description;
+        $event = new Event;
 
-        $events->save();
+        $event->title = $request->title;
+        $event->city = $request->city;
+        $event->private = $request->private;
+        $event->description = $request->description;
 
-        return redirect('/');
+
+        // Image Upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+            $event->image = $imageName;
+
+        }
+
+        $event->save();
+
+        return redirect('/')->with('msg', 'Evento cadastrado com sucesso!');
+
     }
+
+    public function show($id){
+
+        $event = Event::findOrFail($id);
+
+        return view('events.show', ['event' => $event]);
+
+    }
+
+
 }

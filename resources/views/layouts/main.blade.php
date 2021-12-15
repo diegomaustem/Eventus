@@ -7,16 +7,19 @@
         <title>@yield('title')</title>
 
         <!-- Fonte do Google -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
         <!-- CSS Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         <!-- CSS Aplicação -->
         <link rel="stylesheet" href="{{asset('/css/styles.css')}}"> 
 
         <!-- JS Aplicação -->
         <script src="{{asset('/js/scripts.js')}}"></script>
+
+        <!-- JS Mensagens dentro da aplicação -->
+        <script src="{{asset('/js/message.js')}}"></script>
 
         <style>
             body {
@@ -49,14 +52,19 @@
                 </div>
             </nav>
        </header>
-
-        @yield('content')
+        <main>
+            @if(session('msg'))
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <p class="msg"> {{ session('msg') }}</p>
+            </div>
+            @endif
+            @yield('content')
+      </main>
        <footer>
            <p>Eventus &copy; 2021</p>
        </footer>
 
-       <script type = "module"src= "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> 
-        <script nomodule  src= "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+       <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     </body>
 </html>
+
