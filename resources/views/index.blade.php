@@ -29,7 +29,6 @@
                         <p class="card-participants"> X participantes</p>
                         <a href="/events/{{ $event->id }}" class="btn btn-primary"> Saber mais </a>
                     </div>
-
                 </div> 
             @endforeach
             @if(count($events) == 0 && $search)
