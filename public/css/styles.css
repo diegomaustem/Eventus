@@ -112,7 +112,7 @@ header {
 }
 
 .card .card-date {
-    color: #212121;
+    color: #757575;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 30px;
@@ -127,7 +127,6 @@ header {
     font-size: 14px;
     color: #757575;
 }
-
 
 /* Event create page */
 
@@ -192,6 +191,14 @@ footer {
     margin: 20px 0;
 }
 
+#items-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#itens-list li {
+    display: flex;
+}
 
 footer p{
     margin-bottom: 0;
