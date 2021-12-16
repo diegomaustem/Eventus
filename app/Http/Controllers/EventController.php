@@ -8,16 +8,25 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
 
-    public function index(){
+    public function index() {
 
-        $events = Event::all();
+        $search = request('search');
 
-        return view('index', ['events' => $events]);
+        if($search){
+
+            $events = Event::where([
+                ['title', 'like', '%' .$search. '%']
+            ])->get();
+        
+        }else{
+            $events = Event::all();
+        }
+
+        return view('index',['events' => $events, 'search' => $search]);
          
-
     }
 
-    public function create(){
+    public function create() {
 
         return view('events.create');
 
@@ -56,7 +65,7 @@ class EventController extends Controller
 
     }
 
-    public function show($id){
+    public function show($id) {
 
         $event = Event::findOrFail($id);
 

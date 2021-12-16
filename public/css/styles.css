@@ -200,6 +200,10 @@ footer {
     display: flex;
 }
 
+.info {
+    text-decoration: none;
+}
+
 footer p{
     margin-bottom: 0;
 }
